@@ -1,0 +1,7 @@
+1)
+cp db.ini.dist db.ini
+edit the newly created db.ini with db information
+
+2)
+cp .htaccess.dist .htaccess
+edit any lines if needed
