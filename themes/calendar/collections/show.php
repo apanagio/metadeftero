@@ -23,7 +23,7 @@
             <?php foreach ($items as $item): ?>
             <?php $itemTitle = strip_formatting(metadata($item, array('Dublin Core', 'Title'))); ?>
             <div class="item hentry">
-				<?php if ($item->Type->name == 'Sound'): ?>
+				<?php if ($item->Type && $item->Type->name == 'Sound'): ?>
 					<h3>
 						<?php 
 							$dateString = metadata($item, array('Dublin Core', 'Date'));
