@@ -9,14 +9,15 @@
     <?php// echo all_element_texts('collection'); ?>
 
     <div id="collection-items">
-
 	<?php 
 		usort($items, function ($a, $b) {
 			$dateString = metadata($a, array('Dublin Core', 'Date'));
 			$dateA = DateTime::createFromFormat('Y-m-d G:i', $dateString);
+			$miliA = $dateA instanceOf DateTime ? $dateA->format('U') : 0;
 			$dateString = metadata($b, array('Dublin Core', 'Date'));
 			$dateB = DateTime::createFromFormat('Y-m-d G:i', $dateString);
-			return ($dateA instanceOf DateTime) && ($dateB instanceOf DateTime) ? $dateB->format('U') > $dateA->format('U') : true;
+			$miliB = $dateB instanceOf DateTime ? $dateB->format('U') : 0;
+			return $miliA < $miliB;
 		});
 	?>
         <?php if (metadata('collection', 'total_items') > 0): ?>
