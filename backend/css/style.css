@@ -1,0 +1,15 @@
+.fixed-height {
+	height:200px;
+}
+
+.scroll-y {
+	overflow-y: auto;
+	height:70%;
+}
+.add-item {
+	text-align:center;
+}
+
+.huge {
+	font-size: 3em;
+	}
