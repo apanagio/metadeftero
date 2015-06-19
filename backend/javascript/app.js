@@ -4,16 +4,21 @@
 	var urlBase = '../api/';
 	var key = '92240b1020b541bc583c71859629bac628d4131d';
 	
-	app.controller('CollectionController', ["$resource", function($resource) {
-		//~ this.list = {};
+	app.controller('CollectionController', ["$resource", "$timeout", function($resource, $timeout) {
+		var that = this;
 		var rest = $resource(urlBase + "collections/:id/", {
 			key: '@key'
 		});
-		this.getCollections = function () {
-			this.list = rest.query();
+		this.getCollections = function (delay) {
+				that.list = rest.query();
 		};
 		
 		this.addCollection = function (data) {
+			var ids = {
+				title: 50,
+				subject: 49,
+				text: 1
+			};
 			var sendData = {
 				public: true,
 				key: key,
@@ -23,16 +28,30 @@
 					element: {
 						id: 50
 					}
-				}]
+				}, 
+				data.subject && {
+					html: false, 
+					text: data.subject,
+					element: {
+						id: 49
+					}
+				},
+				data.text && {
+					html: false, 
+					text: data.text,
+					element: {
+						id: 1
+					}
+				}
+				]
 			};
-			
-			rest.save(sendData).$promise.then(this.getCollections.call(this));
+			rest.save(sendData).$promise.then( this.getCollections );
 		};
 		this.removeCollection = function (id) {
 			rest.remove({
 				id: id, 
 				key: key
-			}).$promise.then(this.getCollections.call(this));
+			}).$promise.then( this.getCollections );
 		};
 		this.getCollections();
 		

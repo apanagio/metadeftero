@@ -27,6 +27,9 @@
                </div>
                <div class="panel-body scroll-y">
                   <div>items: {{collection.items.count}}</div>
+                  <div ng-repeat="attribute in collection.element_texts |filter: {element: {id: 49} }">
+                     <strong>{{attribute.text}}</strong>
+                  </div>
                   <div ng-repeat="attribute in collection.element_texts |filter: {element: {id: 41} }">
                      {{attribute.text}}
                   </div>
