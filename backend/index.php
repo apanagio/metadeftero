@@ -20,10 +20,10 @@
          <div ng-repeat="collection in collections.list" class="col-md-3">
             <div class="panel panel-default fixed-height">
                <div class="panel-heading">
-               <h4 ng-repeat="attribute in collection.element_texts |filter: {element: {id: 50} }" >
-                  {{attribute.text}}
-                  <span class="glyphicon glyphicon-remove btn btn-link pull-right"></span>
-               </h4>
+                 <span class="glyphicon glyphicon-remove btn btn-link pull-right" ng-click="collections.removeCollection(collection.id)"></span>
+                 <h4 ng-repeat="attribute in collection.element_texts |filter: {element: {id: 50} }" >
+                    {{attribute.text}}
+                  </h4>
                </div>
                <div class="panel-body scroll-y">
                   <div>items: {{collection.items.count}}</div>
@@ -36,7 +36,7 @@
          </div>
          <div class="col-md-3">
 			<div class="panel panel-success add-item">
-				<span class="glyphicon glyphicon-plus btn btn-link huge"></span>
+				<span class="glyphicon glyphicon-plus btn btn-link huge" ng-click="collections.addCollection({})"></span>
 			</div>
          </div>
       </div>
